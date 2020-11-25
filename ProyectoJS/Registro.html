@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>biblioteek</title>
+
+    <link rel="stylesheet" href="styleblog.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- <link id="scrollUpTheme" rel="stylesheet" href="css/themes/tab.css" />
+    <link rel="stylesheet" href="css/labs.css" /> -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <!-- <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"
+    ></script> -->
+
+    <!-- <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBM6Sz3B2D1gIMeWOF2emY0xXKpPJ3HaPo",
+        authDomain: "blog-e022c.firebaseapp.com",
+        databaseURL: "https://blog-e022c.firebaseio.com",
+        projectId: "blog-e022c",
+        storageBucket: "blog-e022c.appspot.com",
+        messagingSenderId: "220265013778",
+        appId: "1:220265013778:web:93bbb4d45081d158aa6ecb",
+      };
+      // Initialize Firebase
+      var fire = firebase.initializeApp(firebaseConfig);
+      window._firebase = fire;
+      console.log(fire);
+    </script> -->
+  </head>
+  <body>
+    <header>
+      <!-- Image and text -->
+
+      <nav class="nav justify-content-center">
+        <a class="navbar-brand" href="#">
+          <h2>Biblioteek</h2>
+        </a>
+      </nav>
+    </header>
+    <br />
+    <div class="containertop">
+      <br />
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" href="blog.html">Inicio</a>
+
+          <!--  -->
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link disabled"
+            href="#"
+            tabindex="-1"
+            aria-disabled="true"
+            >Registro</a
+          >
+        </li>
+        <li class="nav-item hidden" id="contenido-nav-item">
+          <a class="nav-link" id="contenido" href="contenido.html">Contenido</a>
+        </li>
+
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Credenciales</a>
+        </li> -->
+      </ul>
+    </div>
+    <br />
+
+    <div class="container">
+      <section class="main row">
+        <article class="col-xs-12 col-sm-8 col-md-9 col-lg-10">
+          <br />
+          <br />
+          <br />
+
+          <h3 class="parrafo">
+            Registrate para acceder a nuestro exclusivo contenido!
+          </h3>
+        </article>
+        <br />
+        <aside class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
+          <div class="imagen">
+            <img
+              src="images/008d39c004d74606e7e413a7fadcf334.jpg"
+              class="img-fluid"
+              alt="Responsive image"
+            />
+          </div>
+        </aside>
+      </section>
+      <br />
+
+      <br />
+      <!-- <div class="container">
+      <section class="main row">
+        <aside class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi id
+            nisi quod reprehenderit consequatur aspernatur vitae vero velit, et
+            ipsum nesciunt laudantium quos libero facilis dignissimos ipsam qui
+            illo ratione?
+          </p>
+        </aside>
+      </section>
+    </div> -->
+      <div class="wrapper fadeInDown" id="login-div">
+        <div id="formContent">
+          <!-- Tabs Titles -->
+
+          <!-- Icon -->
+          <div class="fadeIn first">
+            <br />
+
+            <!-- <img src="/images/008d39c004d74606e7e413a7fadcf334.jpg" id="icon" alt="User Icon" /> -->
+          </div>
+
+          <!-- Login Form -->
+          <form>
+            <input
+              type="text"
+              required
+              id="email"
+              class="fadeIn second"
+              name="login"
+              placeholder="email"
+            />
+            <input
+              type="password"
+              id="password"
+              class="fadeIn third"
+              name="login"
+              placeholder="password"
+            />
+            <input
+              type="submit"
+              class="fadeIn fourth"
+              value="Log In"
+              onclick="registrar(event)"
+            />
+            <!-- onclick="registrar()" -->
+            <!-- <button onclick="registrar(e)">Enviar</button> -->
+          </form>
+
+          <!-- Remind Passowrd -->
+          <!-- <div id="formFooter">
+            <a class="underlineHover" href="contrasena.html"
+              >Ha olvidado sus credenciales?</a
+            >
+          </div> -->
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+    </div>
+  </body>
+  <!-- <script src="fire.js"></script> -->
+
+  <script>
+    // function capturar() {
+    //   function form(email, password) {
+    //     this.email = email;
+    //     this.password = password;
+    //   }
+    //   var email = document.getElementById("email").value;
+    //   var password = document.getElementById("password").value;
+    // }
+
+    $(function () {
+      var user = window.localStorage.getItem("user");
+
+      if (user) {
+        $("#login-div").addClass("hidden");
+        $("#contenido-nav-item").removeClass("hidden");
+      }
+    });
+
+    function registrar(event) {
+      event.preventDefault();
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      if (email == "" || password == "") {
+        alert("Debes completar los campos para registrarte");
+        return;
+      }
+      // var baseDatos = JSON.parse(localStorage.getItem("user") || "[]");
+      // baseDatos.push({
+      //   email,
+      //   password,
+      // });
+
+      agregar({
+        email,
+        password,
+      });
+      $("#contenido-nav-item").removeClass("hidden");
+      $("#login-div").addClass("hidden");
+      window.location = $("#contenido").attr("href");
+    }
+
+    function agregar(user) {
+      localStorage.setItem("user", JSON.stringify(user));
+      console.log(user);
+    }
+  </script>
+
+  <!-- <script>
+    $(".scrollbar").scrollbar();
+  </script> -->
+  <script src="scrollup-master/dist/lib/jquery-1.11.1.min.js"></script>
+  <script src="./scrollup-master/dist/jquery.scrollUp.min.js"></script>
+  <script>
+    $(function () {
+      $.scrollUp({
+        zIndex: 0,
+        position: "relative",
+        animation: "fade",
+        display: "block",
+        activeOverlay: false,
+      });
+    });
+  </script>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>biblioteek</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styleContenido.css" />
+    <link rel="stylesheet" href="spinner.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+    />
+    <link id="scrollUpTheme" rel="stylesheet" href="css/themes/tab.css" />
+    <link rel="stylesheet" href="css/labs.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav justify-content-center">
+        <a class="navbar-brand" href="#">
+               <h2>Biblioteek</h2>
+        </a>
+      </nav>
+    </header>
+    <br />
+    <br />
+    <br />
+
+   <div class="containertop">
+      <br>
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link active" href="blog.html" tabindex="-1" aria-disabled="true">Inicio</a>
+        </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="Registro.html">Registro</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" id="contenido">Contenido</a>
+  </li>
+  <li class="button" id="logout-nav-item">
+           <a class="nav-link" onclick="logout()" href="Registro.html">Logout</a> 
+          <!-- <button onclick="logout()">Logout</button> -->
+        </li>
+
+</ul>
+    </div>
+<br>
+    <br />
+    <br />
+    <br />
+
+    <header>
+        <div class="container"><section class="main row">
+        <article class="col-xs-12 col-sm-8 col-md-9 col-lg-10">
+      <br>
+          <h4 >
+           La sección de libros se encuentra organizada por titulo del libro, sus autores, portada y link de descarga.
+          </h4>
+      <br>
+      <div class="loader">Loading...</div>
+
+        </article>
+      <!-- </div> -->
+      <div class="container">
+        <br />
+        <br>
+        <!-- <h2>Prueba</h2> -->
+        <div id="posts">
+          <br />
+        </div>
+      </div>
+    </header>
+    <br />
+
+    </body>
+
+  <script
+    src="https://code.jquery.com/jquery-3.5.1.js"
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"
+  ></script>
+  <!-- <script>
+    $(".scrollbar").scrollbar();
+  </script> -->
+  <script src="scrollup-master/dist/lib/jquery-1.11.1.min.js"></script>
+  <script src="./scrollup-master/dist/jquery.scrollUp.min.js"></script>
+  <script>
+    $(function () {
+      $.scrollUp({
+        zIndex: 0,
+        position: "relative",
+        animation: "fade",
+        display: "block",
+        activeOverlay: false,
+      });
+    });
+  </script>
+
+  <script>
+
+    
+    function get() {
+      const postsContainer = $(".posts");
+      $.get("https://www.etnassoft.com/api/v1/get/?id", function (data) {
+      $(".loader").addClass("hidden");
+     
+        data = JSON.parse(data);
+        data.forEach((post) => {
+          const domElement = document.createElement("div");
+          const titleElement = document.createElement("h3");
+          const authorElement = document.createElement("p");
+          const linkContainer = document.createElement("div");
+          const linkDescarga = document.createElement("p");
+          const urlElement = document.createElement("a");
+          const imageElement = document.createElement("img");
+          
+          titleElement.innerText = post.title;
+          authorElement.innerText = "Autor:   " + post.author;
+          linkDescarga.innerText = "Link de descarga:"
+          urlElement.innerText =  post.url_download;
+          imageElement.src = post.cover;
+          urlElement.href = post.url_download;
+          linkContainer.className = "container-link"
+          linkContainer.append(linkDescarga,urlElement);
+          domElement.append(titleElement);
+          domElement.append(authorElement);
+          domElement.append(imageElement);
+          domElement.append(linkContainer);
+          posts.append(domElement);
+        });
+      });
+    }
+    
+    get();
+   
+     function logout(event) {
+      // event.preventDefault();
+       
+       $("#login-div").removeClass("hidden");
+       $("#contenido-nav-item").addClass("hidden");
+      window.localStorage.removeItem("user");
+
+      window.location.pathname = "Registro.html"
+    }
+
+  </script>
+
+<style>
+.container-link{
+  display: flex;
+  justify-content: center;
+}
+
+</style>
+
+</html>

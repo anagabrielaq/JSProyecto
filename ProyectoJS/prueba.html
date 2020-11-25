@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Get</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h2>Prueba</h2>
+        <div id="posts"></div>
+      </div>
+    </header>
+  </body>
+  <script
+    src="https://code.jquery.com/jquery-3.5.1.js"
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    function get() {
+      const postsContainer = $(".posts");
+      $.get("https://www.etnassoft.com/api/v1/get/?id", function (data) {
+        // console.log(data);
+        // console.log(typeof data);
+        // console.log(data.length);
+        data = JSON.parse(data);
+        data.forEach((post) => {
+          const domElement = document.createElement("div");
+          const titleElement = document.createElement("p");
+          const authorElement = document.createElement("p");
+          const urlElement = document.createElement("a");
+          const imageElement = document.createElement("img");
+          titleElement.innerText = post.title;
+          authorElement.innerText = post.author;
+          urlElement.innerText = post.url_download;
+          imageElement.src = post.cover;
+          //   authorElement.innerText = post.body;
+          domElement.append(titleElement);
+          domElement.append(authorElement);
+          domElement.append(imageElement);
+          domElement.append(urlElement);
+          posts.append(domElement);
+        });
+      });
+    }
+    get();
+  </script>
+</html>
